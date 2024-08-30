@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import './App.css'
 
 const FileUploader = () => {
     const [files, setFiles] = useState([]);
@@ -56,36 +57,33 @@ const FileUploader = () => {
 
     return (
         <div>
-            <div>
-                <p>Please select documents and click "Upload" before prompting.</p>
+            <div className = "center">
+                <input
+                    type="file"
+                    accept=".pdf"
+                    multiple
+                    onChange={onFileChange}
+                    ref={fileInputRef} // Attach ref to the input element
+                />
+                <button onClick={onFileUpload} disabled={isUploading}> {/* Disable button while uploading */}
+                    Upload
+                </button>
             </div>
-            <input
-                type="file"
-                accept=".pdf"
-                multiple
-                onChange={onFileChange}
-                ref={fileInputRef} // Attach ref to the input element
-            />
-            <button onClick={onFileUpload} disabled={isUploading}> {/* Disable button while uploading */}
-                Upload
-            </button>
-
             {/* Show the loading message when uploading */}
             {isUploading && (
                 <div>
-                    <p>Files uploading...</p>
+                    <p className = "center">Files uploading...</p>
                 </div>
             )}
 
             {/* Show the list of selected files with a remove button */}
             {files.length > 0 && !isUploading && (
                 <div>
-                    <h2>Selected Files:</h2>
                     <ul>
                         {files.map((file, index) => (
-                            <li key={index}>
-                                {file.name}
-                                <button onClick={() => removeFile(file.name)}>Remove</button>
+                            <li key={index} className = "center">
+                                {'•  ' + file.name}
+                                <button className = 'justify-button' onClick={() => removeFile(file.name)}>Remove</button>
                             </li>
                         ))}
                     </ul>
@@ -93,7 +91,7 @@ const FileUploader = () => {
             )}
 
             {errors.length > 0 && (
-                <div style={{ color: 'red' }}>
+                <div style={{ color: 'red' }} className = "center">
                     {errors.map((error, index) => (
                         <p key={index}>{error}</p>
                     ))}

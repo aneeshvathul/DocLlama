@@ -42,6 +42,8 @@ def run_inference():
     prompt = request.json.get('prompt')
     if not prompt:
         return jsonify({"error": "Prompt is required"}), 400
+    if not vdb.pdfs:
+        return jsonify({"error": "Documents is required"}), 400
     
     k = min(10, len(vdb.text_data))
     closest_sentences = vdb.search(prompt, k)
@@ -64,9 +66,11 @@ def run_inference():
             model=llama_model, 
             tokenizer=llama_tokenizer, 
             prompt=query_prompt,
-            max_tokens=200,
+            max_tokens=300,
             verbose=True
         )
+        if not response.strip():
+            return jsonify({"modelResponse": "Sorry, I don't have enough information on that."})
         return jsonify({"modelResponse": response})
     except Exception as e:
         return jsonify({"error": f"Query unsuccessful: {str(e)}"}), 400

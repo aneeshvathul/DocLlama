@@ -1,15 +1,14 @@
 import React from 'react';
 import FileUploader from './FileUploader';
 import Prompt from './Prompt';
+import './App.css'
 
 const App = () => {
   return (
-    <div className = "App">
-        <div>
-          <h1>Welcome to DocLlama!</h1>
-          <FileUploader />
-          <Prompt />
-        </div>
+    <div>
+        <h1 className = "center">Welcome to DocLlama!</h1>
+        <FileUploader />
+        <Prompt />
     </div>
   );
 };

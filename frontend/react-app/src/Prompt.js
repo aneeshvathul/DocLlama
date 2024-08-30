@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css'
 
 const Prompt = () => {
     const [prompt, setPrompt] = useState('');
@@ -25,32 +26,36 @@ const Prompt = () => {
     };
 
     return (
-        <div>
-            <h2>Enter your prompt</h2>
-            <textarea
-                value={prompt}
-                onChange={
-                    (e) => {
-                    setPrompt(e.target.value);
-                    if (modelResponse)
-                        setModelResponse('')
+        <div> 
+            <div className = 'center'>
+                <textarea
+                    value={prompt}
+                    onChange={
+                        (e) => {
+                        setPrompt(e.target.value);
+                        if (modelResponse)
+                            setModelResponse('')
+                        }
                     }
-                }
-                placeholder="Type your prompt here..."
-                rows="8"
-                cols="50"
-            />
+                    placeholder="Type your prompt here..."
+                    rows="10"
+                    cols="50"
+                />
+            </div>
             <br />
-            <button onClick={handleSubmit}>Submit</button>
-            <h2>Model response</h2>
-            <textarea
-                value={modelResponse}
-                onChange={
-                    (e) => setModelResponse(e.target.value)
-                }
-                rows="8"
-                cols="50"
-            />
+            <div className = 'center-associated-button'>
+                <button onClick={handleSubmit}>Submit</button>
+            </div>
+            <div className = 'center'>
+                <textarea
+                    value={modelResponse}
+                    onChange={
+                        (e) => setModelResponse(e.target.value)
+                    }
+                    rows="10"
+                    cols="50"
+                />
+            </div>
             <br />
         </div>
     );
