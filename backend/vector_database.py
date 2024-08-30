@@ -25,6 +25,8 @@ class VectorDatabase:
         # Store the text associated with the embeddings
         self.text_data = []
 
+        self.file_names = set()
+
 
     def embed_text(self, text):
         """
@@ -38,7 +40,7 @@ class VectorDatabase:
             embeddings = self.model(**inputs).last_hidden_state[:, 0, :]  # CLS token embeddings
         return embeddings.cpu().numpy()
 
-    def add_pdf(self, pdf_text):
+    def add_pdf(self, pdf_text, filename):
         """
         Add text data to the vector database.
         
@@ -46,6 +48,7 @@ class VectorDatabase:
         """
         sentences = re.split(r'(?<=[.!?]) +', pdf_text)
         self.pdfs.append(sentences)
+        self.file_names.add(filename)
 
     def search(self, query, k):
         """
@@ -60,23 +63,16 @@ class VectorDatabase:
         results = [(self.text_data[idx], distances[0][i]) for i, idx in enumerate(indices[0])]
         return results
 
-    def remove_pdf(self, idx):
-        """
-        Remove a specific text from the vector database.
-        
-        :param idx: PDF index to remove.
-        """
-        self.pdfs.pop(idx)
-
     def enable_searching(self):
         """
         Prep the database to handle searches by setting FAISS indices
         """
-        self.index.reset()
-        self.text_data.clear()
         for parsed_pdf in self.pdfs:
             embeddings = self.embed_text(parsed_pdf)
             self.index.add(embeddings)
             self.text_data.extend(parsed_pdf)
 
 
+    def reset(self):
+        self.index.reset()
+        self.text_data.clear()

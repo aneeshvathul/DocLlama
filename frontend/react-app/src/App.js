@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import PDFUploader from './PDFUploader';
+import React from 'react';
+import FileUploader from './FileUploader';
+import Prompt from './Prompt';
 
 const App = () => {
-    const [extractedTexts, setExtractedTexts] = useState([]);
-
-    return (
-        <div className="App">
-            <h1>Multi-PDF Text Extractor</h1>
-            <PDFUploader setExtractedTexts={setExtractedTexts} />
-            {console.log(extractedTexts)}
+  return (
+    <div className = "App">
+        <div>
+          <h1>Welcome to DocLlama!</h1>
+          <FileUploader />
+          <Prompt />
         </div>
-    );
+    </div>
+  );
 };
 
 export default App;
+
