@@ -3,14 +3,13 @@
 1. [Git](https://git-scm.com/)
 2. [VSCode](https://code.visualstudio.com/)
 3. [Homebrew](https://brew.sh)
-4. [Make](https://www.gnu.org/software/make/#download)
 
 # Setup
 
 First, clone this repo
 
 ```
-git clone https://github.com/aneeshvathul/GasMechanicsEngine
+git clone https://github.com/aneeshvathul/DocLlama
 ```
 <br />
 
