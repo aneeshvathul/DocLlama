@@ -1,0 +1,7 @@
+mlx-lm
+transformers
+Flask
+pdfplumber
+flask-cors
+faiss-cpu
+torch
