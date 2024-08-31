@@ -2,10 +2,8 @@
 
 1. [Git](https://git-scm.com/)
 2. [Homebrew](https://brew.sh)
+3. [Anaconda](https://docs.anaconda.com/anaconda/install/mac-os/)
 
-```
-brew install --cask anaconda
-```
 ```
 brew install node
 ```
