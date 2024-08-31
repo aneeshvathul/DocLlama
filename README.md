@@ -21,8 +21,6 @@ Then, create a new conda environment and activate it
 
 ```
 conda create -n DocLlama
-```
-```
 conda activate DocLlama
 ```
 Change directory to your cloned DocLlama repo
@@ -32,8 +30,6 @@ cd PATH_TO_DOCLLAMA
 Install Python dependencies and start server
 ```
 pip install -r backend/requirements.txt
-```
-```
 python3 backend/server.py
 ```
 Change directory to the React app
@@ -43,8 +39,6 @@ cd frontend/react-app
 Install React/Node dependencies and launch the app!
 ```
 npm install axios
-```
-```
 npm start
 ```
 
